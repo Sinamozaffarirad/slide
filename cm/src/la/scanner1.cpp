@@ -32,9 +32,11 @@ class symboleTable{
   }
   void print(void){for(int i = 0; i < n; i++) cout << table[i].name << endl;}
 };
-class scanner{ static const int N=200000; public:
-  symboleTable smt; 
-  char buffer[N];  int begin,end,lineno,pos;
+class scanner{ static const int N=200000;
+ public:
+ symboleTable smt; 
+  char buffer[N];  
+  int begin,end,lineno,pos;
   scanner(const char *fileName="pr1.c"){
     ifstream f1(fileName);
     if(!f1){cout<<"file"; throw 0;}
