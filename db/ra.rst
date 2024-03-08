@@ -2327,9 +2327,11 @@ Calculation on tuples instead of relations
 
 ----
 
-  * { ∃ px ∈ P | px.city = 'kashan'}
-  * { ∃ sx ∈ S | sx.city = 'kashan'}
-  * { ∀ sx ∈ S | sx.status > 1}
+  { ∃ px ∈ P | px.city = 'kashan'}
+  
+  { ∃ sx ∈ S | sx.city = 'kashan'}
+  
+  { ∀ sx ∈ S | sx.status > 1}
 
 .. class:: substep
   
@@ -2469,6 +2471,17 @@ Calculation on tuples instead of relations
   #. px.pname where
   #. px.pname where exists spx
   #. px.pname where exists spx (spx.pn = px.pn)
+
+.. class:: substep
+
+  #. px.pname where spx.pn = px.pn
+  
+  #.  Error
+
+  #. px.pname where forall spx (spx.pn = px.pn)
+  #. نام همهٔ قطعاتی را بیابید که همهٔ عرضه کنندگان آنها را عرضه کرده باشند
+  #. نام همهٔ قطعاتی که عرضه شده‌انده
+  
 
 ----
 
@@ -2623,7 +2636,6 @@ Calculation on tuples instead of relations
 
 ----
 
-
 :class: t2c
 
 .. class:: rtl-h1
@@ -2636,14 +2648,26 @@ Calculation on tuples instead of relations
   {sx.sn, sy.sn as sn2} where sx.city = sy.city and
    sx.sn < sy.sn and exists spx(sx.sn = spx.sn or sy.sn = spx.sn)
 
+----
+
+:class: t2c
+
+.. class:: rtl-h1
+
+    زوج شمارهٔ عرضه‌کنندگانی را بیابید که در یک شهر باشند و هر دو عرضه کننده، قطعه یا قطعه‌هایی را عرضه کرده باشند.
+
 هر دو عرضه کرده باشند (راه حل اشتباه)
+
+`.`
 
 .. code:: sql
   :class: substep
 
+  -- راه حل نادرست
   {sx.sn, sy.sn as sn2} where sx.city = sy.city and
    sx.sn < sy.sn and exists spx(sx.sn = spx.sn and sy.sn = spx.sn)
 
+`.`
 
 .. code:: sql
   :class: substep
@@ -2653,6 +2677,17 @@ Calculation on tuples instead of relations
    sx.sn < sy.sn and (exists spx(sx.sn = spx.sn) and
    exists spy(sy.sn = spy.sn))
 
+
+`.`
+
+.. code:: sql
+  :class: substep
+
+  -- راه حل درست
+  {sx.sn, sy.sn as sn2} where sx.city = sy.city and
+   sx.sn < sy.sn and (exists spx(sx.sn = spx.sn) and
+   exists spx(sy.sn = spx.sn))
+   
 ----
 
 :class: t2c
@@ -2789,6 +2824,8 @@ Calculation on tuples instead of relations
 
 ----
 
+:class: t2c
+
 .. class:: rtl-h1
 
     نام قطعاتی را بیابید که همهٔ عرضه‌کنندگانی که قطعهٔ p3 را عرضه کرده‌اند آن قطعه را نیز عرضه کرده باشند.
@@ -2801,6 +2838,9 @@ Calculation on tuples instead of relations
          spy.sn = spx.sn and spy.pn = px.pn
        ) 
     )
+
+.. code:: sql
+    :class: substep
     
     px.pname where forall spx( 
       spx.pn <> 'p3' or exists spy( 
@@ -2811,6 +2851,18 @@ Calculation on tuples instead of relations
 .. class:: rtl-h2 substep
 
     نام قطعاتی که برای‌شان وجود نداشته باشد عرضه‌ای که آن عرضه برای قطعهٔ p3 باشد و وجود نداشته باشد عرضهٔ دیگری از همان عرضه کننده که قطعهٔ آن همین قطعهٔ مورد نظر ما نباشد.
+
+`.`
+
+.. code:: sql
+    :class: substep
+    
+    -- نادرست
+    px.pname where forall spx( 
+      spx.pn = 'p3' or not exists spy( 
+        spy.sn = spx.sn and spy.pn = px.pn
+      ) 
+    )
 
 ----
 

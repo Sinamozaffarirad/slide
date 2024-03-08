@@ -48,29 +48,40 @@ DDL: create table
 
 ----
 
-Tools
-========
-Online
------------
-#. https://sql.js.org/examples/GUI/
-#. https://sql.js.org/#/
-#. https://www.sqlitetutorial.net/
-#. https://sqliteonline.com/
-#. `<https://extendsclass.com/sqlite-browser.html#>`_
-#. https://inloop.github.io/sqlite-viewer/
-#. https://github.com/inloop/sqlite-viewer
-#. https://github.com/sql-js/sql.js
-#. https://sql.js.org/#/
-#. http://sqlfiddle.com/
-#. https://github.com/coleifer/sqlite-web
-#. https://sqlitestudio.pl/
-#. https://www.onworks.net/programs/sqlite-online?amp=0
-#. https://www.heidisql.com/#featurelist
-#. https://sqlzoo.net/
+:class: t2c
 
-Install
---------
-* https://sqlitebrowser.org/
+SQLite
+======
+.. container::
+
+    *Terminal and GUI*
+
+    #. https://www.sqlite.org/download.html
+    #. https://sqlite.org/src/timeline
+    #. https://github.com/sqlite/sqlite
+    #. https://www.sqlite.org/cli.html
+    #. https://sqlitebrowser.org/
+    #. https://github.com/sqlitebrowser/sqlitebrowser
+
+.. container::
+
+    *Online*
+
+    #. https://sql.js.org/examples/GUI/
+    #. https://sql.js.org/#/
+    #. https://www.sqlitetutorial.net/
+    #. https://sqliteonline.com/
+    #. `<https://extendsclass.com/sqlite-browser.html#>`_
+    #. https://inloop.github.io/sqlite-viewer/
+    #. https://github.com/inloop/sqlite-viewer
+    #. https://github.com/sql-js/sql.js
+    #. https://sql.js.org/#/
+    #. http://sqlfiddle.com/
+    #. https://github.com/coleifer/sqlite-web
+    #. https://sqlitestudio.pl/
+    #. https://www.onworks.net/programs/sqlite-online?amp=0
+    #. https://www.heidisql.com/#featurelist
+    #. https://sqlzoo.net/
 
 ----
 
@@ -79,7 +90,7 @@ Install
   create table s (
      sn      char(10) primary key,
      sname   char(30),
-     status  int  default 0,
+     status  int  default(0),
      city    char(20)
   );
 
@@ -94,7 +105,7 @@ Install
   create table sp (
      sn    char(10) references s,
      pn    char(10) references p,
-     qty   int default 0,
+     qty   int default(0),
      primary key (sn, pn)
   );
 

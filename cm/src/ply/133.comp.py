@@ -1,4 +1,5 @@
-tokens = ('NUMBER','PLUS', 'MUL', 'ID', 'ASG', 'COMP')
+tokens = ('NUMBER','PLUS', 'MUL', 'ID', 'ASG',
+  'COMP')
 t_PLUS    = r'\+'
 t_MUL    = r'\*'
 t_ID = r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -8,19 +9,21 @@ t_NUMBER = r'[0-9]+'
 t_ignore = " \t\n"
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    print("Illegal rrr '%s'" % t.value[0])
     t.lexer.skip(1)
 
 import ply.lex as lex
 lex.lex()
-lex.input("""wwe2 == 4+23 = *34 +123
+lex.input("""wwe2 ==  4+23 = *34 +123
 count+34+435
 x=y
 """)
+
 while True:
   tok = lex.token()
   if not tok:  break
   print(tok)
+
 """
 lex$ python3 132.assign.py 
 LexToken(ID,'wwe2',1,0)
@@ -42,4 +45,3 @@ LexToken(ASG,'=',1,35)
 LexToken(ID,'y',1,36)
 lex$ 
 """
-

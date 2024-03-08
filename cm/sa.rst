@@ -3,6 +3,7 @@
 :css: ./style.css
 :substep: true
 :slide-numbers: true
+:data-width: 1024
 
 ----
 
@@ -15,18 +16,6 @@ Ahmad Yoosofan
 Compiler course
 
 University of Kashan
-
-.. :
-
-  :js: https://d3js.org/d3.v5.min.js
-  :js: https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js
-  :js: https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js
-
-.. raw:: html
-
-  <script src="//d3js.org/d3.v5.min.js"></script>
-  <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
-  <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
 
 ----
 
@@ -212,12 +201,8 @@ Derivation Tree(I)
     #. A + i[87] ⇒
     #. i[43] + i[87]
 
+.. yographviz::
 
-.. raw:: html
-
-  <div id="graph2" class="substep"></div>
-  <script>
-  d3.select("#graph2").graphviz().renderDot(`
     digraph {
       node [shape=plaintext];
       S [label="S"];
@@ -232,8 +217,6 @@ Derivation Tree(I)
       A -> I;
       A1 -> II
     }
-  `);
-  </script>
 
 ----
 
@@ -269,11 +252,8 @@ Derivation Tree(II)
     #. ( A * i[5] ) ⇒
     #. ( i[32] * i[5] )
 
-.. raw:: html
+.. yographviz::
 
-  <div id="graph3" class="substep"></div>
-  <script>
-  d3.select("#graph3").graphviz().renderDot(`
     digraph {
       node [shape=plaintext];
       S [label="S"];
@@ -296,8 +276,6 @@ Derivation Tree(II)
       A1 -> I;
       A2 -> II;
     }
-  `);
-  </script>
 
 ----
 
@@ -332,11 +310,8 @@ Derivation Tree(III)
     #. A * ( i[32] + i[5] ) ⇒
     #. i[3] * ( i[32] + i[5] )
 
-.. raw:: html
+.. yographviz::
 
-  <div id="graph4" class="substep"></div>
-  <script>
-  d3.select("#graph4").graphviz().renderDot(`
     digraph {
       node [shape=plaintext];
       S    [label="S"];
@@ -365,8 +340,6 @@ Derivation Tree(III)
       A1 -> I;
       A2 -> II;
     }
-  `);
-  </script>
 
 ----
 
